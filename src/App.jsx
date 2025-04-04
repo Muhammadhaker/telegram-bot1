@@ -2,7 +2,7 @@ import './App.css';
 import { getData } from './constants/db';
 import Card from './components/card/card';
 import Cart from './components/cart/cart';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const courses = getData();
 
@@ -48,7 +48,15 @@ function App() {
       telegram.MainButton.hide(); 
     }
   };
-  
+  const onSendDate=useCallback(()=>{
+      telegram.sendDate(JSON.stringify(cartItems))
+  },[cartItems])
+
+  useEffect(()=>{
+    telegram.onEvent("mainButtonClicked",onSendDate)
+
+    return()=> telegram.offEvent("mainButtonClicked",onSendDate)
+  },[onSendDate])
   return (
     <>
       <h1 className="heading">Sammi kurslar</h1>
