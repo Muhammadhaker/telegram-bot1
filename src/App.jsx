@@ -40,10 +40,15 @@ function App() {
       setCartItems(newData)
     }
   };
-   const onCheckout=()=>{
-    telegram.MainButton.text = "Sotib olish :)"
-    telegram.MainButton.show();
-   }
+  const onCheckout = () => {
+    if (cartItems.length > 0) {
+      telegram.MainButton.text = "Sotib olish :)";
+      telegram.MainButton.show();
+    } else {
+      telegram.MainButton.hide(); 
+    }
+  };
+  
   return (
     <>
       <h1 className="heading">Sammi kurslar</h1>
