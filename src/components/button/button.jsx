@@ -13,7 +13,6 @@ const Button = (props) => {
       className={`btn ${typeClass} ${disabled ? 'disabled' : ''}`}
       onClick={onClick}
       disabled={disabled}
-      
     >
       {title}
     </button>
